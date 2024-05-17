@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate,  } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import Footer2 from "../Components/Footer2";
 import { useContext } from "react";
@@ -6,6 +6,9 @@ import { AuthContext } from "../Authprovider/Authprovider";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
+  const location = useLocation()
+  console.log('locationin the login page', location)
+  const navigate = useNavigate()
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -19,6 +22,7 @@ const Login = () => {
     console.log(form.get("password"));
     signIn(email, password)
       .then((result) => {
+        navigate(location?.state? location.state : '/')
         console.log(result.user);
       })
       .catch((error) => {

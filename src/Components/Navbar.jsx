@@ -4,13 +4,18 @@ import { AuthContext } from "../Authprovider/Authprovider";
 
 const Navbar = () => {
 
-const {user,logOut} =useContext(AuthContext);
-  const handleSignOut= ()=>{
-    logOut()
-    .then()
-    .catch()
-
-  }
+const {user,logOut , setLoading} =useContext(AuthContext);
+const handleSignOut = () => {
+  setLoading(true);
+  logOut()
+    .then(() => {
+      setLoading(false);
+    })
+    .catch((error) => {
+      console.error("Sign-out error: ", error);
+      setLoading(false);
+    });
+};
 
 
 
@@ -36,7 +41,7 @@ const {user,logOut} =useContext(AuthContext);
         Register
       </NavLink>
       <NavLink
-        to="/about us"
+        to="/about-us"
         className={({ isActive }) => (isActive ? "text-blue-700" : "")}
       >
         About Us
@@ -87,16 +92,18 @@ const {user,logOut} =useContext(AuthContext);
             />
           </div>
 
-            {
-              user?
-              <button
+          {user ? (
+            <button
               onClick={handleSignOut}
-              className="ml-2 btn btn-outline btn-warning">Sign-out</button>
-              :
-              <Link to='/login'><button className="ml-2 btn btn-outline btn-primary">Log-in</button></Link>
-              
-            }
-          
+              className="ml-2 btn btn-outline btn-warning"
+            >
+              Sign-out
+            </button>
+          ) : (
+            <Link to="/login">
+              <button className="ml-2 btn btn-outline btn-primary">Log-in</button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ const Welcome = () => {
       <p className="py-6 text-black">
 Certainly! Here's a welcome message for your customers:
 At The Evento, we believe in turning your dreams into unforgettable experiences. Whether you're celebrating a milestone, planning a special occasion, or hosting a corporate event, we're here to make it extraordinary.</p>
-      <NavLink to='/about us'><button className="btn btn-primary">About us</button></NavLink>
+      <NavLink to='/about-us'><button className="btn btn-primary">About us</button></NavLink>
     </div>
   </div>
 </div>

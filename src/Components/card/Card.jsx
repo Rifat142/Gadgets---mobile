@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 const Card = ({service}) => {
-            console.log(service)
+            // console.log(service)
         const {name,image,details,price,id} = service;
     return (
         <div>
