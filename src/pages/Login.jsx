@@ -4,9 +4,22 @@ import Footer2 from "../Components/Footer2";
 
 
 const Login = () => {
+      const handleLogin = e =>{
+       e.preventDefault();
+      
+       console.log(e.currentTarget);
+       const form = new FormData(e.currentTarget)
+       const password = form.get('password')
+       const email = form.get('email')
+       console.log(form.get('email'))
+       console.log(form.get('password'))
+       
+      }
+   
     return (
         <div>
             <Navbar></Navbar>
+            
          <div className="hero min-h-screen bg-white ">
   <div className="hero-content grid">
     <div className="text-center">
@@ -14,27 +27,27 @@ const Login = () => {
       
      </div>
      <div className="card  sm:w-full lg:w-96  max-w-sm shadow-2xl bg-blue-300">
-      <form className="card-body ">
+      <form onSubmit={handleLogin} className="card-body">
         <div className="form-control">
           <label className="label">
             <span className="label-text text-black">Email</span>
           </label>
-          <input type="email" placeholder="email" className="input input-bordered bg-slate-50" required />
+          <input type="email" name="email" placeholder="email" className="input input-bordered bg-slate-50" required />
         </div>
         <div className="form-control ">
           <label className="label">
             <span className="label-text text-black">Password</span>
           </label>
-          <input type="password" placeholder="password" className="input input-bordered bg-slate-50" required />
+          <input type="password" name="password" placeholder="password" className="input input-bordered bg-slate-50" required />
           <label className="label">
             <a href="#" className="label-text-alt link link-hover text-black">Forgot password?</a>
           </label>
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary text-black">Login</button>
+          <button  className="btn btn-primary text-black">Login</button>
         </div>
         <div>
-          <p className="text-black">If u don't have an account, <NavLink className={'link link-hover font-bold'}       to='/register'>Register Now!</NavLink> </p>
+          <p className="text-black">If u don't have an account, <NavLink className={'link link-hover font-bold'} to='/register'>Register Now!</NavLink> </p>
         </div>
       </form>
     </div>

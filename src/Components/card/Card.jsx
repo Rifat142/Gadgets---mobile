@@ -12,7 +12,7 @@ const Card = ({service}) => {
     <p className="flex-grow">{details}</p>
     <p className="flex-grow text-2xl font-bold" >{price}</p>
     <div className="card-actions justify-end">
-      <NavLink to='/details'><button className="btn btn-primary text-white">Buy Now</button></NavLink>
+    <NavLink to='/details'><button className="btn btn-primary text-white">Buy Now</button></NavLink>
     </div>
   </div>
 </div>

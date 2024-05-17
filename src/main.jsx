@@ -1,54 +1,54 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import Home from './pages/Home';
-import Roots from './Roots/Roots';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import AboutUs from './pages/AboutUs';
-import MoreComment from './pages/MoreComment';
-import CardDetails from './pages/CardDetails';
-
+import Home from "./pages/Home";
+import Roots from "./Roots/Roots";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import AboutUs from "./pages/AboutUs";
+import MoreComment from "./pages/MoreComment";
+import CardDetails from "./pages/CardDetails";
+import Authprovider from "./Authprovider/Authprovider";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<Roots></Roots>,
+    element: <Roots></Roots>,
     children: [
       {
-        path:'/',
-        element:<Home></Home>,
+        path: "/",
+        element: <Home></Home>,
       },
       {
-        path:'/login',
-        element:<Login></Login>
+        path: "/login",
+        element: <Login></Login>,
       },
       {
-        path:'register',
-        element:<Register></Register>
+        path: "register",
+        element: <Register></Register>,
       },
       {
-        path:'/about us',
-        element:<AboutUs></AboutUs>
+        path: "/about us",
+        element: <AboutUs></AboutUs>,
       },
       {
-        path:'/comment',
-        element:<MoreComment></MoreComment>
+        path: "/comment",
+        element: <MoreComment></MoreComment>,
       },
       {
-        path:'/details',
-        element:<CardDetails></CardDetails>
+        path: "/details",
+        element: <CardDetails></CardDetails>,
       },
-
     ],
   },
 ]);
 
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode >
-     <RouterProvider router={router} />
-  </React.StrictMode>,
-)
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <Authprovider>
+      <RouterProvider router={router} />
+    </Authprovider>
+  </React.StrictMode>
+);
