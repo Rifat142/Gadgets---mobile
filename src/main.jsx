@@ -38,8 +38,9 @@ const router = createBrowserRouter([
         element: <MoreComment></MoreComment>,
       },
       {
-        path: "/details",
+        path: "/details/:id",
         element: <CardDetails></CardDetails>,
+        loader: () => fetch('/data.json')
       },
     ],
   },
