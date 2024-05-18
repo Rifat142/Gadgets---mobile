@@ -1,11 +1,33 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import Footer2 from "../Components/Footer2";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../Authprovider/Authprovider";
 import Swal from "sweetalert2";
 
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import app from "../Firebase/Firebase.config";
+
 const Login = () => {
+    const {user,setUser} = useState(null)
+    const auth = getAuth(app)
+    const provider = new GoogleAuthProvider()
+    const handleGoogleSignIn = ()=>{
+      signInWithPopup(auth,provider)
+      .then(result=>{
+        handleAlert();
+        const loggedInUser = result.user
+        setUser(loggedInUser)
+        console.log(loggedInUser);
+
+      })
+      .catch( error=>{
+        console.log('error=' , error)
+      }
+        
+      )
+    }
+
   const handleAlert = () => {
     const Toast = Swal.mixin({
       toast: true,
@@ -23,7 +45,7 @@ const Login = () => {
       title: "Signed in successfully",
     });
   };
-  const { signIn } = useContext(AuthContext);
+  const { signIn  } = useContext(AuthContext);
   const location = useLocation();
   console.log("locationin the login page", location);
   const navigate = useNavigate();
@@ -97,8 +119,9 @@ const Login = () => {
                   </a>
                 </label>
               </div>
-              <div className="form-control mt-6">
-                <button className="btn btn-primary text-black">Login</button>
+              <div className="form-control mt-6 gap-3">
+                <button className="btn btn-primary text-white">Login</button>
+                <button onClick={handleGoogleSignIn} className="btn btn-primary text-white">Login with Google</button>
               </div>
               <div>
                 <p className="text-black">
