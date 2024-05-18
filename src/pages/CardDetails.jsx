@@ -1,8 +1,17 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
+import Swal from 'sweetalert2'
 
 const CardDetails = () => {
+  const handleClick = ()=>{
+    Swal.fire({
+      title: "Booking completed",
+      text: "Thank you",
+      icon: "success"
+    });
+  }
+
   const events = useLoaderData();
   const { id } = useParams();
 
@@ -29,7 +38,12 @@ const CardDetails = () => {
               </p>
               <p className="font-bold text-3xl text-black">Price:{event.price}</p>
               <br />
-              <button className="btn btn-primary">Book Now!</button>
+
+              
+              <button 
+              onClick={handleClick}
+              
+              className="btn btn-primary text-white">Book Now!</button>
             </div>
           </div>
         </div>

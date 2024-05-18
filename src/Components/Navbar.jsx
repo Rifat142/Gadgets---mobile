@@ -71,25 +71,27 @@ const handleSignOut = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-blue-400 rounded-box w-52"
+              className="menu menu-sm dropdown-content  mt-3 z-[1] p-2 shadow   w-full"
             >
               {navbarTittles}
             </ul>
           </div>
-          <a className="btn btn-ghost text-2xl text-black">The Eventor</a>
+          <a className="btn btn-ghost sm:text-lg lg:text-2xl text-black">The Eventor</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navbarTittles}</ul>
         </div>
 
-        <div className="navbar-end ">
-          <p className="mr-4 text-black">my name </p>
+        <div className="navbar-end">
+          <div className=" sm:grid  lg:flex">
+          <p className="  sm:m-auto  lg:mr-4 text-black">my name </p>
           <div className="w-10 ">
             <img
               className="rounded-full"
               alt="Tailwind CSS Navbar component"
               src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
             />
+          </div>
           </div>
 
           {user ? (
