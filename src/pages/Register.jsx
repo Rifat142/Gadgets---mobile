@@ -1,11 +1,37 @@
 import { useContext } from "react";
 import Footer2 from "../Components/Footer2";
 import Navbar from "../Components/Navbar";
-import  { AuthContext } from "../Authprovider/Authprovider";
+import { AuthContext } from "../Authprovider/Authprovider";
+import { updateProfile } from "firebase/auth";
+import Swal from "sweetalert2";
 
 
 const Register = () => {
-  const {createUser} = useContext(AuthContext)
+  const { createUser, user } = useContext(AuthContext);
+  const handleReg = () => {
+    Swal.fire({
+      title: "Registration completed",
+      icon: "success",
+      html: `
+         <b>go to home page </b>,
+        
+        
+      `,
+      showCloseButton: true,
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText: `
+        <a href='/'>Home page </a>
+      `,
+     
+     
+    });
+  };
+  
+                  
+
+
+
   const hadleRegister = (e) => {
     e.preventDefault();
     const regForm = new FormData(e.currentTarget);
@@ -13,17 +39,46 @@ const Register = () => {
     const photo = regForm.get("url");
     const password = regForm.get("password");
     const email = regForm.get("email");
-    console.log(name)
+    
+    if(password.length<6){
+       return Swal.fire("Password is less than 6 characters");
+
+    }
+    else if (!/[A-Z]/.test(password)){
+       return Swal.fire("password don't have a capital letter");
+    }
+    else if (!/[^a-zA-Z0-9]/.test(password)){
+      return  Swal.fire("password don't have a special character");
+    }
+
+
+
+
+
+    // console.log(name)
     // create user
-    createUser(email,password)
-    .then(result=>{
-      console.log(result.user)
-    })
-    .catch(error=>{
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(error,errorCode,errorMessage)
-    })
+    createUser(email, password)
+      .then((result) => {
+        handleReg();
+        updateProfile(result.user, {
+          displayName: name,
+          photoURL: photo,
+        });
+
+        // console.log(result.user);
+      })
+      
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          
+        });
+        // console.log(error,errorCode,errorMessage)
+      });
   };
 
   return (
@@ -93,7 +148,8 @@ const Register = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary text-black">Register</button>              </div>
+                <button className="btn btn-primary text-black">Register</button>{" "}
+              </div>
             </form>
           </div>
         </div>

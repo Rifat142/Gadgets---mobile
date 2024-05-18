@@ -5,6 +5,7 @@ import { AuthContext } from "../Authprovider/Authprovider";
 const Navbar = () => {
 
 const {user,logOut , setLoading} =useContext(AuthContext);
+console.log(user);
 const handleSignOut = () => {
   setLoading(true);
   logOut()
@@ -84,12 +85,12 @@ const handleSignOut = () => {
 
         <div className="navbar-end">
           <div className=" sm:grid  lg:flex">
-          <p className="  sm:m-auto  lg:mr-4 text-black">my name </p>
+          <p className="  sm:m-auto  lg:mr-4 text-black">{user?user.displayName : 'my name'} </p>
           <div className="w-10 ">
             <img
               className="rounded-full"
               alt="Tailwind CSS Navbar component"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+            src={user?user.photoUrl   :"https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"}
             />
           </div>
           </div>

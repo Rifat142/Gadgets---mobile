@@ -36,17 +36,21 @@ const Login = () => {
     const email = form.get("email");
     const password = form.get("password");
 
-    console.log(form.get("email"));
-    console.log(form.get("password"));
+    // console.log(form.get("email"));
+    // console.log(form.get("password"));
     signIn(email, password)
       .then((result) => {
         handleAlert();
         navigate(location?.state ? location.state : "/");
-        console.log(result.user);
+        // console.log(result.user);
       })
       .catch((error) => {
         console.error(error);
-        alert(error);
+        Swal.fire({
+          title: "The user not found!",
+          text: "if you don't have an account please Register",
+          icon: "question"
+        });
       });
   };
 
@@ -98,13 +102,13 @@ const Login = () => {
               </div>
               <div>
                 <p className="text-black">
-                  If u don't have an account,{" "}
+                  If u don't have an account,
                   <NavLink
                     className={"link link-hover font-bold"}
                     to="/register"
                   >
                     Register Now!
-                  </NavLink>{" "}
+                  </NavLink>
                 </p>
               </div>
             </form>
