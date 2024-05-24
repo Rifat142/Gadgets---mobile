@@ -45,7 +45,7 @@ const handleSignOut = () => {
         to="/about-us"
         className={({ isActive }) => (isActive ? "text-blue-700" : "")}
       >
-        About Us
+        About Ussssssss
       </NavLink>
     </div>
   );

@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
-import app from "../Firebase/Firebase.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import app from "../Firebase/Firebase.config";
 
 export const AuthContext = createContext(null);
 
@@ -11,7 +11,7 @@ const AuthProvider = ({ children }) => {
   const [loading , setLoading ] = useState(true);
   console.log("Current user:", user);
   console.log("Loading state:", loading);
-
+  
 
 
   console.log(user);
